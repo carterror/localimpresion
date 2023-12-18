@@ -1,0 +1,16 @@
+/* custom.css */
+
+body {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.container,
+.navbar,
+.card,
+.sidebar,
+.header {
+    background-color: #212529 !important; /* Cambiar según necesidad */
+    color: #ccc !important; /* Ajustar el color del texto */
+}
+

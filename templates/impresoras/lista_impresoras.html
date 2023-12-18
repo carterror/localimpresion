@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+<style>
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1>Impresoras</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Impresoras</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    Lista de Impresoras
+                    <a class="btn btn-outline-primary float-end " href="{% url 'agregar_impresora' %}">Agregar Nuevo Impresora</a>
+                </div>
+
+                <!-- Table with stripped rows -->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-container overflow-auto">
+                        <table id="miTabla" class="table datatable " data-bs-theme="dark">
+                            <thead>
+                            <tr>
+                                <th> Nombre </th>
+                                <th> Conexion </th>
+                                <th> Descripcion </th>
+                                <th> localizacion </th>
+                                <th> marca </th>
+                                <th> Modelo </th>
+                                <th data-sortable="false" data-searchable="false">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for impresora in impresoras %}
+
+
+                            <tr data-index="0">
+                                <td>{{ impresora.nombre }}</td>
+                                <td>{{ impresora.tipo_conexion }}</td>
+                                <td>{{ impresora.descripcion }}</td>
+                                <td>{{ impresora.localizacion }}</td>
+                                <td>{{ impresora.marca }}</td>
+                                <td>{{ impresora.modelo_fabricacion }}</td>
+
+                                <td class="w-25">
+                                    <a class="btn btn-primary" href="{% url 'editar_impresora' impresora.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar" data-bs-theme="dark"><i class="bi bi-pen"></i></a>
+                                    <a class="btn btn-danger" href="{% url 'eliminar_impresora' impresora.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar" data-bs-theme="dark"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

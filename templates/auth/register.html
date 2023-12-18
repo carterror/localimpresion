@@ -1,0 +1,91 @@
+{% extends 'auth.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block form %}
+<div class="card-body">
+
+    <div class="pt-4 pb-2">
+        <h5 class="card-title text-center pb-0 fs-4">Crea una cuenta</h5>
+        <p class="text-center small">Ingrese sus datos personales para crear una cuenta</p>
+    </div>
+
+
+    <form class="row g-3 needs-validation" method="post" novalidate>
+        {% csrf_token %}
+
+        <div class="col-12">
+            <label for="yourName" class="form-label">Nombre</label>
+            <input type="text" name="{{ form.first_name.name }}" class="form-control" id="yourName" required>
+            <div class="invalid-feedback">Por favor entre su Nombre!</div>
+        </div>
+
+
+        <div class="col-12">
+            <label for="yourEmail" class="form-label">Correo</label>
+            <input type="email" name="{{ form.email.name }}" class="form-control" id="yourEmail" required>
+            <div class="invalid-feedback">Por favor entre su correo!</div>
+        </div>
+
+
+        <div class="col-12">
+            <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label>
+            <div class="input-group has-validation">
+                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                <input type="text" name="{{ form.username.name }}" class="form-control" id="yourUsername" required>
+                <div class="invalid-feedback">Por favor entre su Usuario.</div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <label for="{{ form.password1.id_for_label }}" class="form-label">Contraseña</label>
+            <input type="password" name="{{ form.password1.name }}" class="form-control" id="yourPassword" required>
+            <div class="invalid-feedback">Por favor entre su Contraseña!</div>
+
+        </div>
+
+        <div class="col-12">
+            <label for="{{ form.password2.id_for_label }}" class="form-label">Confirmar Contraseña</label>
+            <input type="password" name="{{ form.password2.name }}" class="form-control" id="yourCPassword" required>
+            <div class="invalid-feedback">Por favor entre su Contraseña!</div>
+
+        </div>
+
+        <!--        <div class="col-12">-->
+        <!--            <div class="form-check">-->
+        <!--                <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>-->
+        <!--                <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and-->
+        <!--                    conditions</a></label>-->
+        <!--                <div class="invalid-feedback">You must agree before submitting.</div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Por favor, corrige los siguientes errores:</strong>
+            {{ form.non_field_errors }}
+            {% for field in form %}
+            {% for error in field.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="col-12  mt-5">
+            <button class="btn btn-primary w-100" type="submit">Crea Cuenta</button>
+        </div>
+
+
+        <div class="col-12">
+            <p class="small mb-0"> Ya tiene cuenta? <a href="pages-login.html">Iniciar Sesión</a></p>
+        </div>
+    </form>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}
