@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Impresión</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- Favicons -->
+    <link href="{% static '/img/icon.png' %}" rel="icon">
+    <link href="{% static '/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <!--    <link href="https://fonts.gstatic.com" rel="preconnect">-->
+    <!--    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"-->
+    <!--          rel="stylesheet">-->
+    <link href="{% static '/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+</head>
+<body>
+<header data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary rounded" aria-label="Thirteenth navbar example">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11"
+                    aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+                <a class="navbar-brand col-lg-3 me-0" href="#">Local de Impresiones</a>
+                <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/locales' %}active{% endif %}" href="#">Locales </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    </li>
+
+                </ul>
+                <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+                    <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                        <li class="nav-item me-2">
+                            <a class="btn btn-primary" href="{% url 'imprimir' %}">Imprimir</a>
+                        </li>
+                        <li class="nav-item border border-right">
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                               aria-expanded="false">{{user}}</a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">Perfil</a></li>
+<!--                                <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                <li><button class="dropdown-item" type="submit">Salir</button></li>
+                                </form>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<main id="main" class="main " style="min-height: 78vh" data-bs-theme="dark">
+
+      <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Local de Impresiones</h1>
+        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Imprimir</a>
+          <a href="#" class="btn btn-secondary my-2">Locales</a>
+        </p>
+      </div>
+    </div>
+  </section>
+    <div class="container">
+
+    {% include 'notification.html' %}
+    </div>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="text-body-secondary py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#">Back to top</a>
+        </p>
+        <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
+        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
+                href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+    </div>
+</footer>
+<script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Template Main JS File -->
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

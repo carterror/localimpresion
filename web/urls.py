@@ -16,12 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth import views as auth_views
+
+from web.views import home, imprimir
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('dashboard/', include('gestion_impresoras.urls')),
-    path('', include('web.urls')),
-    path('usuarios/', include('usuarios.urls')),
-
+    path('', home, name='home'),
+    path('imprimir/', imprimir, name='imprimir'),
 ]

@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import FileField
 
 from usuarios.models import Usuario
 
@@ -29,16 +28,21 @@ class Impresora(models.Model):
         return f"{self.nombre} - {self.marca} {self.modelo_fabricacion}"
 
 
-# class DocumentoSubido(models.Model):
-#     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="documentos_subidos")
-#     titulo = models.CharField(max_length=255)
-#     archivo = models.FileField(upload_to='documentos/')
-#     tipo = models.CharField(max_length=100)
-#     local = models.ForeignKey(Local, on_delete=models.SET_NULL, null=True)
-#     fecha_subida = models.DateTimeField(auto_now_add=True)
-#
-#     def __str__(self):
-#         return f"{self.titulo} subido por {self.usuario.username}"
+class DocumentoSubido(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="documentos_subidos")
+    titulo = models.CharField(max_length=255)
+    archivo = models.FileField(upload_to='uploads/documentos/')
+    tipo = models.CharField(max_length=100)
+    local = models.ForeignKey(Local, on_delete=models.SET_NULL, null=True)
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+    color = models.BooleanField(default=False)
+    impresora = models.ForeignKey(Impresora, on_delete=models.SET_NULL, null=True)
+    doscaras = models.BooleanField(default=False)
+    numero_copias = models.IntegerField(default=1)
+    numero_paginas = models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.titulo} subido por {self.usuario.username}"
 
 
 class RegistroActividad(models.Model):
