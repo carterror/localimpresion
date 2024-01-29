@@ -21,7 +21,7 @@ from gestion_impresoras.views import home, lista_locales, agregar_local, editar_
     agregar_impresora, eliminar_impresora, editar_impresora
 
 urlpatterns = [
-    path('home/', home, name='home'),
+    path('', home, name='home'),
 
     # path('locales/<int:pk>/', detalle_local, name='detalle_local'),
     path('locales/', lista_locales, name='lista_locales'),

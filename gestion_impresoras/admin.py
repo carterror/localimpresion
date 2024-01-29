@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from gestion_impresoras.models import Impresora, Local, RegistroActividad
+from gestion_impresoras.models import Impresora, Local, RegistroActividad, DocumentoSubido
+
 
 # Register your models here.
 
@@ -30,3 +31,4 @@ class RegistroActividadAdmin(admin.ModelAdmin):
 admin.site.register(Impresora, ImpresoraAdmin)
 admin.site.register(Local, LocalAdmin)
 admin.site.register(RegistroActividad, RegistroActividadAdmin)
+admin.site.register(DocumentoSubido)
