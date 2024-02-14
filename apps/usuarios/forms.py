@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from usuarios.models import Usuario
+from apps.usuarios.models import Usuario
 
 
 class RegistroUsuarioForm(UserCreationForm):
@@ -10,4 +10,4 @@ class RegistroUsuarioForm(UserCreationForm):
 
     class Meta:
         model = Usuario
-        fields = ("first_name", "email", "username", "email", "password1", "password2")
+        fields = ("first_name", "email", "username", "email", "password1", "password2", "ci")

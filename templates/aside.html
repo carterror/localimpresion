@@ -89,47 +89,85 @@
 <!--      </li>&lt;!&ndash; End Components Nav &ndash;&gt;-->
 
       <li class="nav-item">
-        <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Locales</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-ruta" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-map"></i><span>Rutas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav" class="nav-content collapse {% if request.path == '/locales/' or request.path == '/locales/agregar/'  %} show {% endif %}" >
+        <ul id="components-nav-ruta" class="nav-content collapse {% if request.path == '/rutas/' or request.path == '/rutas/agregar/'  %} show {% endif %}" >
           <li>
-            <a href="{% url 'lista_locales' %}" class="{% if request.path == '/locales/' %} active text-primary {% endif %}">
-              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Locales</span>
+            <a href="{% url 'lista_rutas' %}" class="{% if request.path == '/rutas/' %} active text-primary {% endif %}">
+              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Rutas</span>
             </a>
           </li>
           <li>
-            <a href="{% url 'agregar_local' %}" class="{% if request.path == '/locales/agregar/' %} active text-primary {% endif %}">
-              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Locales</span>
+            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/rutas/agregar/' %} active text-primary {% endif %}">
+              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Ruta</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-agencia" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-building"></i><span>Agencias</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-agencia" class="nav-content collapse {% if request.path == '/rutas/' or request.path == '/rutas/agregar/'  %} show {% endif %}" >
+          <li>
+            <a href="{% url 'lista_rutas' %}" class="{% if request.path == '/rutas/' %} active text-primary {% endif %}">
+              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Agencias</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/rutas/agregar/' %} active text-primary {% endif %}">
+              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Agencia</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-viajero" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-luggage"></i><span>Viajeros</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-viajero" class="nav-content collapse {% if request.path == '/viajeros/' or request.path == '/viajeros/agregar/'  %} show {% endif %}" >
+          <li>
+            <a href="{% url 'lista_viajeros' %}" class="{% if request.path == '/viajeros/' %} active text-primary {% endif %}">
+              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Viajeros</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'agregar_viajero' %}" class="{% if request.path == '/viajeros/agregar/' %} active text-primary {% endif %}">
+              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Viajero</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-viajero" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-people"></i><span>Usuarios</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav-viajero" class="nav-content collapse {% if request.path == '/viajeros/' or request.path == '/viajeros/agregar/'  %} show {% endif %}" >
+          <li>
+            <a href="{% url 'lista_viajeros' %}" class="{% if request.path == '/viajeros/' %} active text-primary {% endif %}">
+              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Viajeros</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'agregar_viajero' %}" class="{% if request.path == '/viajeros/agregar/' %} active text-primary {% endif %}">
+              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Viajero</span>
             </a>
           </li>
         </ul>
       </li>
 
       <li class="nav-item ">
-        <a class="nav-link collapsed bg-dark-subtle " data-bs-target="#components-nav-impresora" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Impresoras</span><i class="bi bi-chevron-down ms-auto"></i>
+        <a class="nav-link bg-dark-subtle  {% if request.path == '/config/' %} active {% endif %}" href="{% url 'home' %}">
+          <i class="bi bi-tools "></i>
+          <span>Configuración</span>
         </a>
-        <ul id="components-nav-impresora" class="nav-content collapse {% if request.path == '/impresoras/' or request.path == '/impresoras/agregar/'  %} show {% endif %}" >
-          <li>
-            <a href="{% url 'lista_impresoras' %}" class="{% if request.path == '/impresoras/' %} active text-primary {% endif %}">
-              <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Impresoras</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="{% url 'agregar_impresora' %}" class="{% if request.path == '/impresoras/agregar/' %} active text-primary {% endif %}">
-              <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Impresoras</span>
-            </a>
-          </li>
-        </ul>
       </li>
-
-
-      <!-- End Components Nav -->
-
-
-
 
     </ul>
 

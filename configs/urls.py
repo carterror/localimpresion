@@ -20,8 +20,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('dashboard/', include('gestion_impresoras.urls')),
-    path('', include('web.urls')),
-    path('usuarios/', include('usuarios.urls')),
-
+    path('', include('apps.web.urls')),
+    path('dashboard/', include('apps.reservas.urls')),
+    
+    path('usuarios/', include('apps.usuarios.urls')),
 ]

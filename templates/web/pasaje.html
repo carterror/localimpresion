@@ -1,0 +1,59 @@
+{% extends 'web/layout.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+
+  {% block content %}
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-7 ">
+          <div class="card shadow-sm">
+            <div class="card-header">Pasajes disponibles</div>
+            <div class="card-body">
+              <ol class="list-group list-group-numbered">
+              {% for p in pasajes %}
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                      <div class="fw-bold">{{p.origen.lugar}} - {{p.destino.lugar}}</div>
+                      <br>
+                      
+                      {{p.fecha}}
+                      <br>
+                      <div class="row justify-content-between mt-4 full-width">
+
+                        <p class="col-4">Transporte: {{ p.tipo }}</p>
+                        <p class="col-4">Asientos: {{ p.asientos }}</p>
+                        <p class="col-4">Precio: $ {{ p.precio }}</p>
+                      </div>
+
+                    </div>
+                    <span class="badge bg-primary rounded-pill">14</span>
+                  </li>
+                  {% endfor %}
+                </ol>
+              <!-- <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+
+
+

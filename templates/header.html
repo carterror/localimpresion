@@ -5,8 +5,8 @@
     <div class="d-flex align-items-center justify-content-start">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="{% static 'img/icon.png' %}" alt="" width="40px">
-        <span class="d-none d-lg-block mx-3"> Local Impresión</span>
+        <img src="{% static 'img/icon.png' %}" alt="logo" width="50px" srcset="">
+        <span class="d-none d-lg-block mx-3"> ViajaYa</span>
       </a>
 
     </div><!-- End Logo -->
@@ -112,7 +112,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="{% static 'assets/img/profile-img.jpg' %}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">{{user}}</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

@@ -1,10 +1,9 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import render
 
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Local, Impresora
-from .forms import LocalForm, ImpresoraForm
+from apps.gestion_impresoras.models import Local, Impresora
+from apps.gestion_impresoras.forms import LocalForm, ImpresoraForm
 
 
 # Create your views here.

@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 # usuarios/views.py
 
-from .forms import RegistroUsuarioForm
 from django.contrib.auth import login, authenticate
+from apps.usuarios.forms import RegistroUsuarioForm
 
 
 def registro(request):

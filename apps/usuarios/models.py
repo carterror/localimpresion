@@ -6,4 +6,4 @@ from django.contrib.auth.models import AbstractUser
 
 class Usuario(AbstractUser):
     # Aquí puedes añadir campos adicionales si son necesarios
-    pass
+    ci = models.CharField(null=False, max_length=11)
