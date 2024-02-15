@@ -4,7 +4,7 @@
     <ul class="sidebar-nav" id="sidebar-nav" >
 
       <li class="nav-item ">
-        <a class="nav-link bg-dark-subtle {% if request.path == '/home/' %} active {% endif %}" href="{% url 'home' %}">
+        <a class="nav-link bg-dark-subtle {% if request.path == '/dashboard/' %} active {% endif %}" href="{% url 'dashboard' %}">
           <i class="bi bi-grid"></i>
           <span>Inicio</span>
         </a>
@@ -92,14 +92,14 @@
         <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-ruta" data-bs-toggle="collapse" href="#">
           <i class="bi bi-map"></i><span>Rutas</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav-ruta" class="nav-content collapse {% if request.path == '/rutas/' or request.path == '/rutas/agregar/'  %} show {% endif %}" >
+        <ul id="components-nav-ruta" class="nav-content collapse {% if request.path == '/dashboard/rutas/' or request.path == '/dashboard/rutas/agregar/'  %} show {% endif %}" >
           <li>
-            <a href="{% url 'lista_rutas' %}" class="{% if request.path == '/rutas/' %} active text-primary {% endif %}">
+            <a href="{% url 'lista_rutas' %}" class="{% if request.path == '/dashboard/rutas/' %} active text-primary {% endif %}">
               <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Rutas</span>
             </a>
           </li>
           <li>
-            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/rutas/agregar/' %} active text-primary {% endif %}">
+            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/dashboard/rutas/agregar/' %} active text-primary {% endif %}">
               <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Ruta</span>
             </a>
           </li>
@@ -112,14 +112,14 @@
         <a class="nav-link collapsed bg-dark-subtle" data-bs-target="#components-nav-agencia" data-bs-toggle="collapse" href="#">
           <i class="bi bi-building"></i><span>Agencias</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="components-nav-agencia" class="nav-content collapse {% if request.path == '/rutas/' or request.path == '/rutas/agregar/'  %} show {% endif %}" >
+        <ul id="components-nav-agencia" class="nav-content collapse {% if request.path == '/dashboard/agencias/' or request.path == '/dashboard/agencias/agregar/'  %} show {% endif %}" >
           <li>
-            <a href="{% url 'lista_rutas' %}" class="{% if request.path == '/rutas/' %} active text-primary {% endif %}">
+            <a href="{% url 'lista_agencias' %}" class="{% if request.path == '/dashboard/agencias/' %} active text-primary {% endif %}">
               <i class="bi bi-list" style="font-size: 20px" ></i><span>Listar Agencias</span>
             </a>
           </li>
           <li>
-            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/rutas/agregar/' %} active text-primary {% endif %}">
+            <a href="{% url 'agregar_ruta' %}" class="{% if request.path == '/dashboard/agencias/agregar/' %} active text-primary {% endif %}">
               <i class="bi bi-plus" style="font-size: 20px"></i><span>Agregar Agencia</span>
             </a>
           </li>

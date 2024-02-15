@@ -35,10 +35,8 @@
                         <table class="table datatable " data-bs-theme="dark">
                             <thead>
                             <tr>
-                                <th> Nombre </th>
-                                <th> Direccion </th>
-                                <th> Encargado </th>
-                                <th data-sortable="false" >Acciones</th>
+                                <th> Lugar </th>
+                                <th data-sortable="false">Acciones</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -46,9 +44,7 @@
 
 
                             <tr data-index="0">
-                                <td>{{ ruta.nombre }}</td>
-                                <td>{{ ruta.direccion }}</td>
-                                <td>{{ ruta.usuario_encargado }}</td>
+                                <td>{{ ruta.lugar }}</td>
 
                                 <td class="w-25">
                                     <a class="btn btn-primary" href="{% url 'editar_ruta' ruta.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Editar" data-bs-theme="dark"><i class="bi bi-pen"></i></a>
