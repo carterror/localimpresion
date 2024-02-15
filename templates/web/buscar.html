@@ -1,0 +1,68 @@
+{% extends 'web/layout.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+
+  {% block content %}
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row justify-content-center">
+        <div class="col-5 ">
+          <div class="card shadow-sm">
+            <div class="card-header">Buscar Pasaje</div>
+            <div class="card-body">
+              <form action="{% url 'buscar' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Origen</label>
+                  <select class="form-select" name="origen" aria-label="Default select example">
+                    <option selected disabled>Seleccionar Origen</option>
+                    {% for ruta in rutas %}
+                    <option value="{{ruta.id}}">{{ruta.lugar}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Destino</label>
+                  <select class="form-select" name="destino" aria-label="Default select example">
+                    <option selected>Seleccionar Destino</option>
+                    {% for ruta in rutas %}
+                    <option value="{{ruta.id}}">{{ruta.lugar}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Fecha</label>
+
+                  <input type="date" class="form-control" name="fecha" id="exampleCheck1">
+                </div>
+                <div class="d-grid gap-2 mt-4">
+                  <button type="submit" class="btn btn-primary full-width">Buscar</button>
+                </div>
+               
+              </form>
+              <!-- <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+
+{% block extra_js %}
+{% endblock %}
+
+
+
+

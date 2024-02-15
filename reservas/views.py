@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from apps.reservas.models import Ruta
+from reservas.models import Ruta
 
 def home(request):
     return render(request, 'home.html')

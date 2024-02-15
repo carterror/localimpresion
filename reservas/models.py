@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Ruta(models.Model):
     lugar = models.CharField(null=False, max_length=250)
+    direccion = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     

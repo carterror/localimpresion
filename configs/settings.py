@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
-    'apps.usuarios',
-    'apps.reservas',
+    
+    'usuarios',
+    'reservas',
+    'web',
     
 ]
 
