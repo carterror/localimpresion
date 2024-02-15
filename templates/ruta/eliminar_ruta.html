@@ -11,7 +11,7 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'lista_locales' %}">Locales</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'lista_rutas' %}">Rutas</a></li>
             <li class="breadcrumb-item active">Eliminar</li>
         </ol>
     </nav>
@@ -29,7 +29,7 @@
                     {% csrf_token %}
                     <button class="btn btn-danger" type="submit">Eliminar</button>
 
-                     <a class="btn btn-primary" href="{% url 'lista_locales' %}">Cancelar</a>
+                     <a class="btn btn-primary" href="{% url 'lista_rutas' %}">Cancelar</a>
                 </form>
 
 
