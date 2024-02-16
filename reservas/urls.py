@@ -21,7 +21,8 @@ from django.urls import path, include
 from reservas.views import (lista_rutas, agregar_ruta, 
                                  editar_ruta, eliminar_ruta,
                                  lista_viajeros, agregar_viajero,
-                                 editar_viajero, eliminar_viajero, home)
+                                 editar_viajero, eliminar_viajero, home, lista_agencias, 
+                                 agregar_agencia, editar_agencia, eliminar_agencia)
 
 urlpatterns = [
     path('', home, name='dashboard'),
@@ -35,4 +36,9 @@ urlpatterns = [
     path('viajeros/agregar/', agregar_viajero, name='agregar_viajero'),
     path('viajeros/<int:pk>/editar/', editar_viajero, name='editar_viajero'),
     path('viajeros/<int:pk>/eliminar/', eliminar_viajero, name='eliminar_viajero'),
+
+    path('agencias/', lista_agencias, name='lista_agencias'),
+    path('agencias/agregar/', agregar_agencia, name='agregar_agencia'),
+    path('agencias/<int:pk>/editar/', editar_agencia, name='editar_agencia'),
+    path('agencias/<int:pk>/eliminar/', eliminar_agencia, name='eliminar_agencia'),
 ]

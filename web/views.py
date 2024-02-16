@@ -12,9 +12,9 @@ def home(request):
 
 def buscar(request):
     if request.method == 'POST':
-        pasajes = Pasaje.objects.filter(origen=request.POST['origen'], destino=request.POST['destino'])
-        if request.POST['fecha']:
-            pasajes.annotate(fecha_truncada=TruncDate('fecha')).filter(fecha_truncada=request.POST['fecha'])
+        pasajes = Pasaje.objects.annotate(fecha_truncada=TruncDate('fecha')).filter(origen=request.POST['origen'], destino=request.POST['destino'], fecha_truncada=request.POST['fecha'])
+        
+        
         return render(request, 'web/pasaje.html', {'pasajes': pasajes})
     else:
         rutas = Ruta.objects.all()
