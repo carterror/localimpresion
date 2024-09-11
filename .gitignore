@@ -68,6 +68,7 @@ apps/static/assets/.temp
 *.pot
 
 # Django stuff:
+media/
 *.log
 local_settings.py
 db.sqlite3

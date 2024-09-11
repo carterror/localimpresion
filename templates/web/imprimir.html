@@ -11,43 +11,50 @@
 
 
         <div class="card">
-            <form action="{% url 'imprimir' %}" enctype="multipart/form-data" method="POST">
+            <form action="{% url 'imprimir' 0 %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
                 <h5 class="card-header">Subida del documento</h5>
                 <div class="card-body">
-                    <div class="row g-3 mb-3">
+                    <div class="row g-5 mb-3">
                         <div class="col">
-                            <input type="number" name="numero_copias" class="form-control" placeholder="Cantidad de Copias" aria-label="First name">
+                            <input type="number" name="numero_copias" class="form-control" required
+                                placeholder="Cantidad de Copias" aria-label="First name">
                         </div>
-                        <div class="col">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="doscaras" value="doscaras" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Tiro y Retiro
-                                </label>
-                            </div>
-                        </div>
-                             <div class="col">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="color" value="color" id="flexCheckChecked" checked>
-                                <label class="form-check-label" for="flexCheckChecked">
-                                    A Color
-                                </label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="mb-3">
-                        <select class="form-select" aria-label="Default select example" name="local">
-                            <option selected>Open this select menu</option>
-                            {% for local in locales %}
-                            <option value="{{local.id}}">{{local.nombre}}</option>
-                            {% endfor %}
-                        </select>
+
+                        <div class="col">
+                            <select class="form-select" aria-label="Default select example" name="impresora" required>
+                                <option value="">Seleccionar Impresora</option>
+                                {% for imp in impresoras %}
+                                <option value="{{imp.id}}">{{imp.nombre}} con {{imp.cola}} documentos</option>
+                                {% endfor %}
+                            </select>
+                            Información de la impresora: <a href="{% url 'locales' %}">Locales de recogida</a>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col">Opciones:</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-check form-control-lg form-switch">
+                                <input class="form-check-input" type="checkbox" name="doscaras" value="doscaras"
+                                    id="flexSwitchCheckDefault">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Tiro y Retiro</label>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-check form-control-lg form-switch">
+                                <input class="form-check-input" type="checkbox" name="color" value="color"
+                                    id="flexSwitchCheckDefault1" checked>
+                                <label class="form-check-label" for="flexSwitchCheckDefault1"> A Color</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Default file input example</label>
-                        <input class="form-control" type="file" id="formFile" name="document">
+                        <label for="formFile" class="form-label">Documento a imprimir:</label>
+                        <input class="form-control" type="file" id="formFile" name="document" required>
                     </div>
                 </div>
                 <div class="card-footer text-end">
@@ -63,7 +70,3 @@
 
 {% block extra_js %}
 {% endblock %}
-
-
-
-

@@ -1,0 +1,148 @@
+{% extends 'web/layout.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block content %}
+
+<div class="album py-5 bg-body-tertiary">
+ <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-lg-6">
+        <div class="card shadow-sm">
+          <div class="card-title fw-bold text-center mt-2"><h3>Modificar Usuario</h3></div>
+          {% comment %} <div class="card-header justify-content-end">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+          </div> {% endcomment %}
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
+    
+              {{ form.as_p }}
+              
+              <div class="modal-footer justify-content-between">
+                {% if user.limites %}
+                <a class="btn btn-warning justify-content-start"  data-bs-toggle="modal" data-bs-target="#exampleModal" >Quitar Limites</a>
+                {% else %}
+                <a class="btn btn-warning justify-content-start" disabled data-bs-toggle="modal" data-bs-target="#exampleModal" >SIn Limites</a>
+                {% endif %}
+                <button type="submit" class="btn btn-primary justify-content-end" id="btnGuardar">Modificar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-title fw-bold text-center mt-2"><h3>Cambiar Contraseña</h3></div>
+          {% comment %} <div class="card-header justify-content-end">
+            <h3>{{user.first_name}} {{user.last_name}}</h3>
+          </div> {% endcomment %}
+          <div class="card-body">
+            <form method="post" action="{% url 'change_password' %}">
+              {% csrf_token %}
+
+              <p>
+                <label for="old_password">Contraseña actual:</label>
+                <input type="password"  name="old_password" class="form-control" required="" id="old_password">
+              </p>
+              <p>
+                <label for="new_password1">Nueva Contraseña:</label>
+                <input type="password" name="new_password1" class="form-control" required="" id="new_password1">
+                
+              </p>
+              <p>
+                <label for="new_password2">Contraseña nueva (confirmación)</label>
+                <input type="password" name="new_password2" class="form-control" required="" id="new_password2">
+              </p>
+              {% if form2.errors %}
+                  {% for field in form2 %}
+                      {% for error in field.errors %}
+                          <div class="alert alert-danger">
+                              <strong>{{ field.label }}: {{ error|escape }}</strong>
+                          </div>
+                      {% endfor %}
+                  {% endfor %}
+              {% endif %}
+              <div class="modal-footer justify-content-between">
+                <button type="submit" class="btn btn-primary justify-content-end" id="btnGuardar">Modificar</button>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{% url 'solicitud_limite' %}" method="post">
+      {% csrf_token %}
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Solicitud de limites</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="cargo" class="form-label">Cargo</label>
+          <input type="text" class="form-control" name="cargo" placeholder="Decano">
+        </div>
+        <div class="mb-3">
+          <label for="mensaje" class="form-label">Mensaje</label>
+          <textarea class="form-control" name="mensaje" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var inputs = document.querySelectorAll('input, select, textarea');
+      var btnGuardar = document.getElementById('btnGuardar');
+  
+      function habilitarBoton() {
+          btnGuardar.disabled = false;
+      }
+  
+      function deshabilitarBoton() {
+          btnGuardar.disabled = true;
+      }
+  
+      inputs.forEach(function(input) {
+          // Utiliza el evento 'input' para capturar todos los cambios, incluyendo espacios
+          input.addEventListener('input', function() {
+              habilitarBoton();
+          });
+  
+          // Asegúrate de que el botón se deshabilite cuando el campo pierda el foco
+          input.addEventListener('blur', function() {
+              // Aquí puedes agregar lógica adicional si es necesario
+              // Por ejemplo, verificar si el campo está vacío y deshabilitar el botón
+              if (input.value.trim() === '') {
+                  deshabilitarBoton();
+              }
+          });
+      });
+  
+      document.querySelector('form').addEventListener('submit', function() {
+          deshabilitarBoton();
+      });
+  
+      deshabilitarBoton();
+  });
+  </script>
+    
+
+{% endblock %}

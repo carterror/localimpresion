@@ -1,0 +1,49 @@
+{% extends 'web/layout.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="album py-5 bg-body-tertiary">
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-header">Locales</div>
+          <div class="card-body">
+            {% if locales%}
+            <div class="list-group">
+              {% for local in locales %}
+              <a href="{% url 'imprimir' local.id %}" class="list-group-item list-group-item-action" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{local.nombre}}</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">{{ local.direccion }}</p>
+                <small>
+                  {{ local.usuario_encargado.first_name }}: {{ local.usuario_encargado.email }}
+                </small>
+              </a>
+              {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center justify-content-center my-5 pa-5">
+              <div class="alert alert-danger" role="alert">
+                <h3>No existen locales !</h3>
+              </div>
+            </div>
+
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

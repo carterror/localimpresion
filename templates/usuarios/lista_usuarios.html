@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+<style>
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1>Usuarios</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Usuarios</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    Lista de Usuarios
+                </div>
+
+                <!-- Table with stripped rows -->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-container overflow-auto">
+                        <table class="table datatable " data-bs-theme="dark">
+                            <thead>
+                            <tr>
+                                <th> Usuario </th>
+                                <th> Nombre </th>
+                                <th> Correo </th>
+                                <th> Administrador </th>
+                                <th data-sortable="false" >Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in usuarios %}
+
+
+                            <tr data-index="0">
+                                <td>{{ user.username }}</td>
+                                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {% if user.is_staff %}
+                                    <span class="badge bg-danger">Administrador</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Cliente</span>
+                                    {% endif %}
+                                    </td>
+
+                                <td class="w-25">
+                                    <a class="btn btn-primary" href="{% url 'change_pass' user.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Restablecer Contraseña" data-bs-theme="dark"><i class="bi bi-lock"></i></a>
+                                    <a class="btn btn-danger" href="{% url 'eliminar_user' user.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar" data-bs-theme="dark"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

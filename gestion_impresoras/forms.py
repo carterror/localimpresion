@@ -4,7 +4,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 
 from usuarios.models import Usuario
-from .models import Local, Impresora
+from .models import Local, Impresora, DocumentoSubido
 
 
 class LocalForm(forms.ModelForm):
@@ -46,7 +46,7 @@ class ImpresoraForm(forms.ModelForm):
     ),
                                       widget=forms.Select(attrs={'class': 'form-select my-2'})
                                       )
-    descripcion = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control my-2'}))
+    descripcion = forms.CharField(required=True,widget=forms.TextInput(attrs={'class': 'form-control my-2', 'pattern': "^[^\d].*"}))
     localizacion = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control my-2'}))
     marca = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control my-2'}))
     modelo_fabricacion = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control my-2'}))

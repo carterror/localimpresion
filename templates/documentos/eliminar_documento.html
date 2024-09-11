@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'lista_documentos' %}">Documentos</a></li>
+            <li class="breadcrumb-item active">Eliminar</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <!-- templates/gestion_impresoras/agregar_impresora.html -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Eliminar Documento</h5>
+                <h2 class="mb-5">¿Estás seguro de que quieres eliminar el documento "{{ documento.titulo }}"?</h2>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit">Eliminar</button>
+
+                     <a class="btn btn-primary" href="{% url 'lista_documentos' %}">Cancelar</a>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

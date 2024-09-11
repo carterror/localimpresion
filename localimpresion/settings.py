@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-i8q8jwolx5(a969$r8mrmy__0efz=p4z33gg5its%iv=7*27x0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'widget_tweaks',
-
     'gestion_impresoras',
     'usuarios',
 ]
@@ -134,3 +133,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 
+
+# TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+# TEST_DISCOVERY_ROOT = '/localimpresion/tests'
+# TEST_DISCOVERY_PATTERN = 'test*.py'

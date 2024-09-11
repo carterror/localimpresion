@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from web.views import home, imprimir
+from web.views import home, imprimir, locales
 
 urlpatterns = [
     path('', home, name='home'),
-    path('imprimir/', imprimir, name='imprimir'),
+    path('locales/', locales, name='locales'),
+    path('imprimir/<int:id>', imprimir, name='imprimir'),
 ]

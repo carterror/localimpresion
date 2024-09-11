@@ -28,23 +28,24 @@
             </button>
 
             <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-                <a class="navbar-brand col-lg-3 me-0" href="#">Local de Impresiones</a>
+                <a class="navbar-brand col-lg-3 me-0" href="{% url 'home' %}">
+                    <img src="{% static 'img/icon.png' %}" alt="" height="30px" style="margin-right: 5px; ">
+                    Servicio de impresión
+                </a>
                 <ul class="navbar-nav col-lg-6 justify-content-lg-center">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="{% url 'home' %}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/locales' %}active{% endif %}" href="#">Locales </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link {% if request.path == '/locales' %}active{% endif %}" href="{% url 'locales' %}">Locales </a>
                     </li>
 
                 </ul>
                 <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                     <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+                        {% if user.is_authenticated %}
                         <li class="nav-item me-2">
-                            <a class="btn btn-primary" href="{% url 'imprimir' %}">Imprimir</a>
+                            <a class="btn btn-primary" href="{% url 'locales' %}">Imprimir</a>
                         </li>
                         <li class="nav-item border border-right">
                         </li>
@@ -52,8 +53,10 @@
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                aria-expanded="false">{{user}}</a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">Perfil</a></li>
-<!--                                <li><a class="dropdown-item" href="#">Another action</a></li>-->
+                                <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                                {% if user.is_staff %}
+                                    <li><a class="dropdown-item" href="{% url 'dashboard' %}">Administración</a></li>
+                                {% endif %}
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -63,6 +66,14 @@
                                 </form>
                             </ul>
                         </li>
+                        {% else %}
+                        <li class="nav-item me-2">
+                            <a class="btn btn-primary" href="{% url 'login' %}">Entrar</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="btn btn-primary" href="{% url 'register' %}">Registrarse</a>
+                        </li>
+                        {% endif %}
 
                     </ul>
 
@@ -72,22 +83,22 @@
         </div>
     </nav>
 </header>
-<main id="main" class="main " style="min-height: 78vh" data-bs-theme="dark">
+<main id="main" class="main " style="min-height: 78vh; background-image: url({% static '/img/banner.jpg' %}); background-size: contain;" data-bs-theme="dark">
 
-      <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Local de Impresiones</h1>
-        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Imprimir</a>
-          <a href="#" class="btn btn-secondary my-2">Locales</a>
-        </p>
-      </div>
-    </div>
-  </section>
     <div class="container">
 
+        <section class="py-5 text-center container" >
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light" style="background-color: rgba(0, 0, 0, 0.7);">Servicio de impresión</h1>
+            <p class="lead text-body-secondary"></p>
+                <p>
+                  <a href="{% url 'locales' %}" class="btn btn-primary my-2">Imprimir</a>
+                  <a href="{% url 'locales' %}" class="btn btn-secondary my-2">Locales</a>
+                </p>
+              </div>
+            </div>
+          </section>
     {% include 'notification.html' %}
     </div>
     {% block content %}{% endblock %}
@@ -96,11 +107,9 @@
 <footer class="text-body-secondary py-5">
     <div class="container">
         <p class="float-end mb-1">
-            <a href="#">Back to top</a>
+            <a href="#" class="btn btn-primary"><i class="bi bi-caret-up"></i></a>
         </p>
-        <p class="mb-1">Album example is © Bootstrap, but please download and customize it for yourself!</p>
-        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a
-                href="/docs/5.3/getting-started/introduction/">getting started guide</a>.</p>
+        <p class="mb-1">&copy; UCI 2024</p>
     </div>
 </footer>
 <script src="{% static '/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

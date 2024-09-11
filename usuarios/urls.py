@@ -19,10 +19,22 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
-from usuarios.views import registro
+from usuarios.views import registro, PerfilUpdateView, lista_limites, aceptar_limite, denegar_limite, solicitud_limite, change_password, lista_usuarios, change_pass, eliminar_user
 
 urlpatterns = [
     path('login/', LoginView.as_view(template_name='auth/login.html'), name='login'),
     path('registro/', registro, name='register'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout')
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('perfil/', PerfilUpdateView.as_view(), name='perfil'),
+    path('perfil/change_password', change_password, name='change_password'),
+    
+    path('limites/', lista_limites, name='lista_limites'),
+    path('limites/<int:pk>/aceptar', aceptar_limite, name='aceptar_limite'),
+    path('limites/<int:pk>/denegar', denegar_limite, name='denegar_limite'),
+    path('limites/solicitud', solicitud_limite, name='solicitud_limite'),
+    
+    path('usuarios/', lista_usuarios, name='lista_usuarios'),
+    path('usuarios/<int:pk>/change_pass', change_pass, name='change_pass'),
+    path('usuarios/<int:pk>/eliminar', eliminar_user, name='eliminar_user'),
+    
 ]

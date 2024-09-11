@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
+    <h1>Editar Local</h1>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
@@ -22,7 +22,7 @@
         <!-- templates/gestion_impresoras/agregar_impresora.html -->
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Agregar Local</h5>
+                <h5 class="card-title">Editar Local "{{ form.nombre.value }}"</h5>
 
                 <!-- General Form Elements -->
                 <form method="post">

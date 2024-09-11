@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+<style>
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1>Documentos</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Documentos</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    Lista de Documentos
+                </div>
+
+                <!-- Table with stripped rows -->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-container overflow-auto">
+                        <table id="miTabla" class="table datatable " data-bs-theme="dark">
+                            <thead>
+                            <tr>
+                                <th> Usuario </th>
+                                <th> Titulo </th>
+                                <th> Estado </th>
+                                <th data-sortable="false" data-searchable="false">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for documento in documentos %}
+
+
+                            <tr data-index="0">
+                                <td>{{ documento.usuario }}</td>
+                                <td>{{ documento.titulo }}</td>
+                                <td>
+                                    {% if documento.estado == 'p' %}
+                                    <span class="badge bg-danger">Pendiente</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Impreso</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="w-25">
+                                    <a class="btn btn-secondary" href="/media/{{ documento.archivo }}" target="_blank"><i class="bi bi-eye"></i></a>
+                                    <a class="btn btn-primary" href="{% url 'editar_documento' documento.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cambiar Estado" data-bs-theme="dark"><i class="bi bi-gear"></i></a>
+                                    <a class="btn btn-danger" href="{% url 'eliminar_documento' documento.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Eliminar" data-bs-theme="dark"><i class="bi bi-trash"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

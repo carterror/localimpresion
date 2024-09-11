@@ -1,0 +1,91 @@
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+<style>
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="pagetitle">
+    <h1>Solicitudes</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Inicio</a></li>
+            <li class="breadcrumb-item active">Solicitudes</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <div class="card">
+
+            <div class="card-body">
+                <div class="card-title">
+                    Lista de Solicitudes
+                </div>
+
+                <!-- Table with stripped rows -->
+                <div class="datatable-wrapper datatable-loading no-footer sortable searchable fixed-columns">
+                    <div class="datatable-container overflow-auto">
+                        <table class="table datatable " data-bs-theme="dark">
+                            <thead>
+                            <tr>
+                                <th> Nombre </th>
+                                <th> Cargo </th>
+                                <th> Estado </th>
+                                <th data-sortable="false" >Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for limi in limites %}
+
+
+                            <tr data-index="0">
+                                <td>{{ limi.usuario.first_name }}</td>
+                                <td>{{ limi.cargo }}</td>
+                                <td>
+                                    {% if limi.estado == 'p' %}
+                                    <span class="badge bg-warning">Pendiente</span>
+                                    {% elif limi.estado == 'd' %}
+                                    <span class="badge bg-danger">Denegado</span>
+                                    {% else %}
+                                    <span class="badge bg-success">Sin Limites</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="w-25">
+                                    <button class="btn btn-primary" data-bs-theme="dark"  data-bs-toggle="popover" data-bs-trigger="focus" title="Mensaje de Solicitud" data-bs-content="{{limi.descripcion}}"><i class="bi bi-chat-dots"></i></button>
+                                    {% if limi.estado == 'p' %}
+                                    <a class="btn btn-primary" href="{% url 'aceptar_limite' limi.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Aceptar" data-bs-theme="dark"><i class="bi bi-check2-square"></i></a>
+                                    <a class="btn btn-danger" href="{% url 'denegar_limite' limi.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Denegar" data-bs-theme="dark"><i class="bi bi-x-octagon"></i></a>
+                                    {% endif %}
+                                    
+                                        {% if limi.estado == 'd' %}
+                                        <a class="btn btn-primary" href="{% url 'aceptar_limite' limi.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Aceptar" data-bs-theme="dark"><i class="bi bi-check2-square"></i></a>
+                                        {% endif %}
+                                        {% if limi.estado == 'a' %}
+                                        <a class="btn btn-danger" href="{% url 'denegar_limite' limi.pk %}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Denegar" data-bs-theme="dark"><i class="bi bi-x-octagon"></i></a>
+                                        {% endif %}
+                                    
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End Table with stripped rows -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+{% endblock %}

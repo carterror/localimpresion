@@ -18,10 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from gestion_impresoras.views import home, lista_locales, agregar_local, editar_local, eliminar_local, lista_impresoras, \
-    agregar_impresora, eliminar_impresora, editar_impresora
+    agregar_impresora, eliminar_impresora, editar_impresora, lista_documentos, editar_documento, detalle_documento, eliminar_documento
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('', home, name='dashboard'),
 
     # path('locales/<int:pk>/', detalle_local, name='detalle_local'),
     path('locales/', lista_locales, name='lista_locales'),
@@ -33,4 +33,10 @@ urlpatterns = [
     path('impresoras/agregar/', agregar_impresora, name='agregar_impresora'),
     path('impresoras/<int:pk>/editar/', editar_impresora, name='editar_impresora'),
     path('impresoras/<int:pk>/eliminar/', eliminar_impresora, name='eliminar_impresora'),
+
+    path('documentos/', lista_documentos, name='lista_documentos'),
+    path('documentos/<int:pk>/editar/', editar_documento, name='editar_documento'),
+    path('documentos/<int:pk>/', detalle_documento, name='detalle_documento'),
+    path('documentos/<int:pk>/eliminar/', eliminar_documento, name='eliminar_documento'),
+
 ]
